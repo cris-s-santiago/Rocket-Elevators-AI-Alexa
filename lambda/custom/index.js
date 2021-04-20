@@ -43,7 +43,8 @@ const GetRemoteDataHandler = {
 const GetInfoHandler = {
   canHandle(handlerInput) {
     return (handlerInput.requestEnvelope.request.type === 'IntentRequest' 
-    && handlerInput.requestEnvelope.request.intent.name === 'GetInfoIntent'); },
+    && handlerInput.requestEnvelope.request.intent.name === 'GetInfoIntent');
+  },
   async handle(handlerInput) {
     let outputSpeech = 'This is the default message.';
     
@@ -77,6 +78,44 @@ const GetInfoHandler = {
     return handlerInput.responseBuilder.speak(outputSpeech).getResponse();
     
   },
+};
+
+// The method returns the status of a specific elevator
+const GetElevatorStatusHandler = {
+  canHandle(handlerInput) {
+    return (handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'GetElevatorStatusIntent');
+  },
+  async handle(handlerInput) {
+    let outputSpeech = "This is the default message.";
+    
+    const id = handlerInput.requestEnvelope.request.intent.slots.id.value;
+    
+    // Call the API and return a list of the elevators   
+    const listOfElevators = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/elevators')
+    const amountOfElevators = JSON.parse(listOfElevators).length
+    
+    // Validates if the number requested does not exceed the maximum number of elevators
+    if (id > amountOfElevators) {
+        
+    outputSpeech = `The ${id} exceed the number of elevator. The number of elevator deployed is ${amountOfElevators} `;
+      return handlerInput.responseBuilder
+        .speak(outputSpeech)
+        .reprompt()
+        .getResponse();
+    }
+    const elevatorStatus = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/elevators/' + id)
+    
+    // Parsing the GET requests as JSON
+    const elevator = JSON.parse(elevatorStatus).status;
+    
+    // Creating the voice output with the status of the elevator        
+    outputSpeech = `The status of elevator ${id} is ${elevator} `;
+    return handlerInput.responseBuilder
+      .speak(outputSpeech)
+      .reprompt()
+      .getResponse();
+  }
 };
 
 const HelpIntentHandler = {
@@ -153,6 +192,7 @@ exports.handler = skillBuilder
   .addRequestHandlers(
     GetHelloHandler,
     GetInfoHandler,
+    GetElevatorStatusHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,

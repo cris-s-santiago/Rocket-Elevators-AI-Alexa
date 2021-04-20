@@ -38,6 +38,24 @@
                 "Tell me how is it going at Rocket Elevators",
                 "Tell me what is happening at Rocket Elevators"
             ]
+        },
+        {
+          "name": "GetElevatorStatusIntent",
+          "slots": [
+              {
+                  "name": "id",
+                  "type": "AMAZON.NUMBER"
+              }
+          ],
+          "samples": [
+              "what is the status of elevator {id}",
+              "What is the elevator {id} status",
+              "What's the status of elevator {id}",
+              "What's the elevator {id} status",
+              "Tell me the status of elevator {id}",
+              "Tell me the elevator {id} status",
+              "Can you tell me the status of elevator {id}"
+          ]
         }
       ],
       "types": []

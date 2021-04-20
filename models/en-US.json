@@ -1,43 +1,46 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "template two",
-      "types": [],
+      "invocationName": "rocket elevators",
       "intents": [
         {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": [
-
-          ]
+            "name": "AMAZON.NavigateHomeIntent",
+            "samples": []
         },
         {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
+            "name": "AMAZON.CancelIntent",
+            "samples": []
         },
         {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
+            "name": "AMAZON.HelpIntent",
+            "samples": []
         },
         {
-          "name": "AMAZON.StopIntent",
-          "samples": []
+            "name": "AMAZON.StopIntent",
+            "samples": []
         },
         {
-          "name": "GetRemoteDataIntent",
-          "slots": [],
-          "samples": [
-            "how many people are in space",
-            "how many people are in space now",
-            "how many people are currently in space",
-            "how many humans are in space",
-            "how many humans are in space now",
-            "how many humans are currently in space",
-            "how many astronauts are in space",
-            "how many astronauts are in space now",
-            "how many astronauts are currently in space"
-          ]
+            "name": "GetInfoIntent",
+            "slots": [],
+            "samples": [
+                "What is going on at Rocket Elevators",
+                "What is up at Rocket Elevators",
+                "What's up at Rocket Elevators",
+                "what is the rocket elevators situation",
+                "How is it going at Rocket Elevators",
+                "What is new at rocket elevators",
+                "What is happening at Rocket Elevators",
+                "A briefing please",
+                "Tell me about the company",
+                "Tell me what is going on at Rocket Elevators",
+                "Tell me what is up at Rocket Elevators",
+                "Tell me what's up at Rocket Elevators",
+                "Tell me how is it going at Rocket Elevators",
+                "Tell me what is happening at Rocket Elevators"
+            ]
         }
-      ]
+      ],
+      "types": []
     }
   }
 }

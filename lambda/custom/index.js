@@ -2,6 +2,7 @@
 /* eslint-disable global-require */
 
 const Alexa = require('ask-sdk-core');
+const http = require("https");
 
 const GetRemoteDataHandler = {
   canHandle(handlerInput) {
@@ -29,21 +30,90 @@ const GetRemoteDataHandler = {
   },
 };
 
-const HelpIntentHandler = {
+// ----for finding the elevator status of a specific elevator-----
+const GetElevatorStatusHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
+    return (
+      handlerInput.requestEnvelope.request.intent.name === "GetElevatorStatusIntent"
+    );
+  },
+  async handle(handlerInput) {
+    let outputSpeech = "This is the default message.";
+    const id = handlerInput.requestEnvelope.request.intent.slots.id.value;
+    if (id > 200) {
+      outputSpeech = "Please enter a valid number";
+      return handlerInput.responseBuilder
+        .speak(outputSpeech)
+        .reprompt()
+        .getResponse();
+    }
+
+    const elevatorStatus = await getRemoteElevatorData(
+      "https://rocket-elevators-ai.azurewebsites.net/api/elevators/" + id
+    );
+
+    const elevator = JSON.parse(elevatorStatus).status;
+
+    outputSpeech = `The status of elevator ${id} is ${elevator} `;
+
+    return handlerInput.responseBuilder
+      .speak(outputSpeech)
+      .reprompt()
+      .getResponse();
+  }
+};
+
+const getRemoteElevatorData = function(url) {
+  return new Promise((resolve, reject) => {
+    const client = url.startsWith("https") ? require("https") : require("http");
+    const request = client.get(url, response => {
+      if (response.statusCode < 200 || response.statusCode > 299) {
+        reject(new Error("Failed with status code: " + response.statusCode));
+      }
+      const body = [];
+      response.on("data", chunk => body.push(chunk));
+      response.on("end", () => resolve(body.join("")));
+    });
+    request.on("error", err => reject(err));
+  });
+};
+
+//-------------------------
+
+const GetLaunchHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === "LaunchRequest";
   },
   handle(handlerInput) {
-    const speechText = 'You can introduce yourself by telling me your name';
+    const speechText = "Hello there. How can i help you today?";
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt()
+      .getResponse();
+  }
+};
+
+
+
+// -----   help commands -----
+
+const HelpIntentHandler = {
+  canHandle(handlerInput) {
+    return (
+      handlerInput.requestEnvelope.request.type === "IntentRequest" &&
+      handlerInput.requestEnvelope.request.intent.name === "AMAZON.HelpIntent"
+    );
+  },
+  handle(handlerInput) {
+    const speechText =
+      "Here is the list of all commands : what is the status of elevator {id},Can you tell me the status of elevator {id}";
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
       .getResponse();
-  },
-};
-
+  }
+};//-----------------------------------------
 const CancelAndStopIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -101,10 +171,12 @@ const skillBuilder = Alexa.SkillBuilders.custom();
 
 exports.handler = skillBuilder
   .addRequestHandlers(
+    GetLaunchHandler,
     GetRemoteDataHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
+     GetElevatorStatusHandler
   )
   .addErrorHandlers(ErrorHandler)
   .lambda();

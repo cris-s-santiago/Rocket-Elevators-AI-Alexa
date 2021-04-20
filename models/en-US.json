@@ -1,43 +1,54 @@
 {
   "interactionModel": {
-    "languageModel": {
-      "invocationName": "template two",
-      "types": [],
-      "intents": [
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": [
-
-          ]
-        },
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "GetRemoteDataIntent",
-          "slots": [],
-          "samples": [
-            "how many people are in space",
-            "how many people are in space now",
-            "how many people are currently in space",
-            "how many humans are in space",
-            "how many humans are in space now",
-            "how many humans are currently in space",
-            "how many astronauts are in space",
-            "how many astronauts are in space now",
-            "how many astronauts are currently in space"
-          ]
-        }
-      ]
-    }
+      "languageModel": {
+          "invocationName": "test one",
+          "intents": [
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+              {
+                  "name": "GetElevatorStatusIntent",
+                  "slots": [
+                      {
+                          "name": "id",
+                          "type": "AMAZON.NUMBER"
+                      }
+                  ],
+                  "samples": [
+                      "what is the status of elevator {id}",
+                      "Can you tell me the status of elevator {id}"
+                  ]
+              },
+              {
+                  "name": "GetRemoteDataIntent",
+                  "slots": [],
+                  "samples": [
+                      "how many people are in space",
+                      "how many people are in space now",
+                      "how many people are currently in space",
+                      "how many humans are in space",
+                      "how many humans are in space now",
+                      "how many humans are currently in space",
+                      "how many astronauts are in space",
+                      "how many astronauts are in space now",
+                      "how many astronauts are currently in space"
+                  ]
+              }
+          ],
+          "types": []
+      }
   }
 }

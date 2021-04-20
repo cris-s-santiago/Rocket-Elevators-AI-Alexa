@@ -2,6 +2,7 @@
 /* eslint-disable global-require */
 
 const Alexa = require('ask-sdk-core');
+const http = require("https");
 
 // This method is for Alexa's first presentation.
 const GetHelloHandler = {
@@ -120,19 +121,21 @@ const GetElevatorStatusHandler = {
 
 const HelpIntentHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
+    return (
+      handlerInput.requestEnvelope.request.type === "IntentRequest" &&
+      handlerInput.requestEnvelope.request.intent.name === "AMAZON.HelpIntent"
+    );
   },
   handle(handlerInput) {
-    const speechText = 'You can introduce yourself by telling me your name';
+    const speechText =
+      "Here is the list of all commands : what is the status of elevator {id},Can you tell me the status of elevator {id}";
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
       .getResponse();
-  },
-};
-
+  }
+};//-----------------------------------------
 const CancelAndStopIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -196,6 +199,7 @@ exports.handler = skillBuilder
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
+     GetElevatorStatusHandler
   )
   .addErrorHandlers(ErrorHandler)
   .lambda();

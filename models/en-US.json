@@ -1,112 +1,143 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "rocket elevators",
-      "intents": [
-        {
-            "name": "AMAZON.NavigateHomeIntent",
-            "samples": []
-        },
-        {
-            "name": "AMAZON.CancelIntent",
-            "samples": []
-        },
-        {
-            "name": "AMAZON.HelpIntent",
-            "samples": []
-        },
-        {
-            "name": "AMAZON.StopIntent",
-            "samples": []
-        },
-        {
-            "name": "GetInfoIntent",
-            "slots": [],
-            "samples": [
-                "What is going on at Rocket Elevators",
-                "What is up at Rocket Elevators",
-                "What's up at Rocket Elevators",
-                "what is the rocket elevators situation",
-                "How is it going at Rocket Elevators",
-                "What is new at rocket elevators",
-                "What is happening at Rocket Elevators",
-                "A briefing please",
-                "Tell me about the company",
-                "Tell me what is going on at Rocket Elevators",
-                "Tell me what is up at Rocket Elevators",
-                "Tell me what's up at Rocket Elevators",
-                "Tell me how is it going at Rocket Elevators",
-                "Tell me what is happening at Rocket Elevators"
-            ]
-        },
-        {
-          "name": "GetElevatorStatusIntent",
-          "slots": [
-              {
-                  "name": "id",
-                  "type": "AMAZON.NUMBER"
-              }
-          ],
-          "samples": [
-              "What is the status of elevator {id}",
-              "What is the elevator {id} status",
-              "What's the status of elevator {id}",
-              "What's the elevator {id} status",
-              "Tell me the status of elevator {id}",
-              "Tell me the elevator {id} status",
-              "Can you tell me the status of elevator {id}"
-          ]
-        },
-        {
-            "name": "GetInfoInterventionIntent",
-            "slots": [
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "rocket elevators",
+            "intents": [
                 {
-                    "name": "id",
-                    "type": "AMAZON.NUMBER"
-                }
-            ],
-            "samples": [
-                "Give me some information about intervention {id}",
-                "What is the information of intervention {id}",
-                "What is the intervention {id} information",
-                "What's the information of intervention {id}",
-                "What's the intervention {id} information",
-                "Tell me the information of intervention {id}",
-                "Tell me the intervention {id} information"
-            ]
-        },
-        {
-            "name": "ChangeInterventionStatusToInProgressIntent",
-            "slots": [
-                {
-                    "name": "id",
-                    "type": "AMAZON.NUMBER"
-                }
-            ],
-            "samples": [
-                "can you change int {id} to the status in progress",
-                "change the status in progress for the intervention id {id}"
-            ]
-        },
-        {
-            "name": "ChangeElevatorStatusIntent",
-            "slots": [
-                {
-                    "name": "id",
-                    "type": "AMAZON.NUMBER"
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
                 },
                 {
-                    "name": "status",
-                    "type": "AMAZON.FirstName"
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "GetElevatorStatusIntent",
+                    "slots": [
+                        {
+                            "name": "id",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "what is the status of elevator {id}",
+                        "Can you tell me the status of elevator {id}"
+                    ]
+                },
+                {
+                    "name": "GetColumnStatusIntent",
+                    "slots": [
+                        {
+                            "name": "id",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "what is the status of column {id}",
+                        "Can you tell me the status of column {id}"
+                    ]
+                },
+                {
+                    "name": "GetElevatordetailsIntent",
+                    "slots": [
+                        {
+                            "name": "id",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "what is the details of elevator {id}",
+                        "Give me details about elevator {id}"
+                    ]
+                },
+                {
+                    "name": "GetCustomerdetailsIntent",
+                    "slots": [
+                        {
+                            "name": "id",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "what is the details of customer {id}",
+                        "Give me details about customer {id}"
+                    ]
+                },
+                {
+                    "name": "GetInfoInterventionIntent",
+                    "slots": [
+                        {
+                            "name": "id",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Give me some information about intervention {id}",
+                        "What is the details of intervention {id}",
+                        "What is the intervention {id} information",
+                        "What's the information of intervention {id}",
+                        "What's the intervention {id} information",
+                        "Tell me the information of intervention {id}",
+                        "Tell me the intervention {id} information"
+                    ]
+                },
+                {
+                    "name": "ChangeInterventionStatusToInProgressIntent",
+                    "slots": [
+                        {
+                            "name": "id",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "can you change int {id} to the status in progress",
+                        "change the status in progress for the intervention id {id}"
+                    ]
+                },
+                {
+                    "name": "ChangeElevatorStatusIntent",
+                    "slots": [
+                        {
+                            "name": "id",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "status",
+                            "type": "AMAZON.FirstName"
+                        }
+                    ],
+                    "samples": [
+                        "change elevator {id} status to {status}",
+                        "change the status of elevator  {id} to {status}"
+                    ]
+                },
+                {
+                    "name": "ChangeColumnStatusIntent",
+                    "slots": [
+                        {
+                            "name": "id",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "status",
+                            "type": "AMAZON.FirstName"
+                        }
+                    ],
+                    "samples": [
+                        "change column {id} status to {status}",
+                        "change the status of column {id} to {status}"
+                    ]
                 }
             ],
-            "samples": [
-                "change elevator {id} status to {status}",
-                "change the status of elevator  {id} to {status}"
-            ]
+            "types": []
         }
-      ],
-      "types": []
     }
-  }
 }

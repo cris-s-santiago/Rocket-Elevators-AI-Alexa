@@ -48,7 +48,7 @@
               }
           ],
           "samples": [
-              "what is the status of elevator {id}",
+              "What is the status of elevator {id}",
               "What is the elevator {id} status",
               "What's the status of elevator {id}",
               "What's the elevator {id} status",
@@ -56,6 +56,37 @@
               "Tell me the elevator {id} status",
               "Can you tell me the status of elevator {id}"
           ]
+        },
+        {
+            "name": "GetInfoInterventionIntent",
+            "slots": [
+                {
+                    "name": "id",
+                    "type": "AMAZON.NUMBER"
+                }
+            ],
+            "samples": [
+                "Give me some information about intervention {id}",
+                "What is the information of intervention {id}",
+                "What is the intervention {id} information",
+                "What's the information of intervention {id}",
+                "What's the intervention {id} information",
+                "Tell me the information of intervention {id}",
+                "Tell me the intervention {id} information"
+            ]
+        },
+        {
+            "name": "ChangeInterventionStatusToInProgressIntent",
+            "slots": [
+                {
+                    "name": "id",
+                    "type": "AMAZON.NUMBER"
+                }
+            ],
+            "samples": [
+                "can you change int {id} to the status in progress",
+                "change the status in progress for the intervention id {id}"
+            ]
         }
       ],
       "types": []

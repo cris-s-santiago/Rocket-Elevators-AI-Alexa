@@ -3,6 +3,9 @@
 
 const Alexa = require('ask-sdk-core');
 const http = require("https");
+const request = require('request');
+const axios = require('axios');
+
 
 // This method is for Alexa's first presentation.
 const GetHelloHandler = {
@@ -54,7 +57,7 @@ const GetInfoHandler = {
     const listElevatorNotActive = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/elevators/NotActive')
     const listOfBuildings = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/buildings')
     const listOfCustomers =  await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/customers')
-    const listOfBatteries = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/batteries/')    
+    const listOfBatteries = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/batteries')    
     const listOfCity = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/Addresses/City')
     const listOfQuote = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/quotes')    
     const listOfLead = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/leads')
@@ -105,7 +108,7 @@ const GetElevatorStatusHandler = {
         .reprompt()
         .getResponse();
     }
-    const elevatorStatus = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/elevators/' + id)
+    const elevatorStatus = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/elevators' + id)
     
     // Parsing the GET requests as JSON
     const elevator = JSON.parse(elevatorStatus).status;
@@ -118,6 +121,99 @@ const GetElevatorStatusHandler = {
       .getResponse();
   }
 };
+
+
+// The function to get the informations for  of a specific intervention
+const GetInfoInterventionHandler = {
+  canHandle(handlerInput) {
+    return (handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'GetInfoInterventionIntent');
+  },
+  async handle(handlerInput) {
+    let outputSpeech = "This is the default message.";
+    const id = handlerInput.requestEnvelope.request.intent.slots.id.value;
+    
+    // Call the API and return a list of the interventions 
+    const listOfInterventions = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/interventions')
+    // Parsing the GET requests as JSON
+    const amountOfInterventions = JSON.parse(listOfInterventions).length
+    
+    // Validates if the number requested does not exceed the maximum number of interventions
+    if (id > amountOfInterventions) {
+        
+    outputSpeech = `The ${id} exceed the number of intervention. The maximum number of interventions is ${amountOfInterventions}`;
+      return handlerInput.responseBuilder
+        .speak(outputSpeech)
+        .reprompt()
+        .getResponse();
+    }
+    
+    const objectIntervention = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/interventions/' + id);
+    // Parsing the GET requests as JSON for the specific intervention
+    const infoIntervention = JSON.parse(objectIntervention)
+
+    // Creating the output speech with the previously declared constants
+    outputSpeech = `The intervention ${id} author id is ${infoIntervention.author_id}, the customer id is ${infoIntervention.customer_id}.
+    The building id is ${infoIntervention.building_id}. the battery id is ${infoIntervention.battery_id}, the column id is ${infoIntervention.column_id} and the elevator id is ${infoIntervention.elevator_id}.
+    The employee id assigned to the call is ${infoIntervention.employee_id}, the description is ${infoIntervention.report}`;
+    return handlerInput.responseBuilder
+      .speak(outputSpeech)
+      .reprompt()
+      .getResponse();
+  }
+};
+
+const ChangeInterventionStatusToProgressHandler = {
+  canHandle(handlerInput) {
+    return (
+      handlerInput.requestEnvelope.request.type === "IntentRequest" &&
+      handlerInput.requestEnvelope.request.intent.name === "ChangeInterventionStatusToInProgressIntent"
+    );
+  },
+  async handle(handlerInput) {
+      
+    const id = handlerInput.requestEnvelope.request.intent.slots.id.value;
+      
+    
+    return httpPutInterventionStatusInProgress(id, handlerInput);
+
+    //console.log(response);
+
+    //const interventionStatus = getRemoteData("https://rocket-elevators-ai.azurewebsites.net/api/interventions/"+id+"/Status")
+    
+    // Parsing the GET requests as JSON
+    //const intervention = JSON.parse(interventionStatus);
+
+    // Creating the output speech with the previously declared constants
+    //const outputSpeech =` The status of intervention id ${id} is change to in ${interventionStatus} `
+
+    // return handlerInput.responseBuilder
+    //   .speak(outputSpeech)
+    //   .reprompt()
+    //   .getResponse();
+  }
+};
+
+async function httpPutInterventionStatusInProgress(id, handlerInput) {
+  return await axios.put("https://rocket-elevators-ai.azurewebsites.net/api/interventions/"+id+"/InProgress",{ id: id, status: 'InProgress'})
+      .then(res => {
+        console.log("Response", res);
+        const outputSpeech =` The status of intervention id ${id} is change to InProgress`
+
+        return handlerInput.responseBuilder
+          .speak(outputSpeech)
+          .reprompt()
+          .getResponse();      
+      })
+      .catch(function(error){
+          console.log("ERROR",error);
+          
+          return handlerInput.responseBuilder
+          .speak("Qualquer coisa")
+          .reprompt()
+          .getResponse();
+      });
+}
 
 const HelpIntentHandler = {
   canHandle(handlerInput) {
@@ -196,6 +292,8 @@ exports.handler = skillBuilder
     GetHelloHandler,
     GetInfoHandler,
     GetElevatorStatusHandler,
+    GetInfoInterventionHandler,
+    ChangeInterventionStatusToProgressHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,

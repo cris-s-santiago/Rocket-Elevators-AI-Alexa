@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "ask-sdk-core": "^2.9.0",
-    "ask-sdk-model": "^1.29.0"
+    "ask-sdk-model": "^1.29.0",
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "eslint": "^7.5.0",

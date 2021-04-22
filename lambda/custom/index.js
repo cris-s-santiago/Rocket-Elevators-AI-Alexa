@@ -170,30 +170,28 @@ const ChangeInterventionStatusToProgressHandler = {
     );
   },
   async handle(handlerInput) {
-      
+
     const id = handlerInput.requestEnvelope.request.intent.slots.id.value;
-      
+
+    // Call the API and return a list of the elevators   
+    const listOfInterventions = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/interventions')
+    const amountOfInterventions = JSON.parse(listOfInterventions).length
     
-    return httpPutInterventionStatusInProgress(id, handlerInput);
+    // Validates if the number requested does not exceed the maximum number of elevators
+    if (id > amountOfInterventions) {
 
-    //console.log(response);
-
-    //const interventionStatus = getRemoteData("https://rocket-elevators-ai.azurewebsites.net/api/interventions/"+id+"/Status")
-    
-    // Parsing the GET requests as JSON
-    //const intervention = JSON.parse(interventionStatus);
-
-    // Creating the output speech with the previously declared constants
-    //const outputSpeech =` The status of intervention id ${id} is change to in ${interventionStatus} `
-
-    // return handlerInput.responseBuilder
-    //   .speak(outputSpeech)
-    //   .reprompt()
-    //   .getResponse();
+      const outputSpeech = `The ${id} exceed the number of intervention. The maximum number of interventions is ${amountOfInterventions}`;
+      return handlerInput.responseBuilder
+        .speak(outputSpeech)
+        .reprompt()
+        .getResponse();
+    } else{
+      return ChangeInterventionStatusInProgress(id, handlerInput);
+    }
   }
 };
 
-async function httpPutInterventionStatusInProgress(id, handlerInput) {
+async function ChangeInterventionStatusInProgress(id, handlerInput) {
   return await axios.put("https://rocket-elevators-ai.azurewebsites.net/api/interventions/"+id+"/InProgress",{ id: id, status: 'InProgress'})
       .then(res => {
         console.log("Response", res);
@@ -208,12 +206,61 @@ async function httpPutInterventionStatusInProgress(id, handlerInput) {
           console.log("ERROR",error);
           
           return handlerInput.responseBuilder
-          .speak("Qualquer coisa")
+          .speak(error.status)
           .reprompt()
           .getResponse();
       });
 }
 
+const ChangeInterventionStatusToCompletedHandler = {
+  canHandle(handlerInput) {
+    return (
+      handlerInput.requestEnvelope.request.type === "IntentRequest" &&
+      handlerInput.requestEnvelope.request.intent.name === "ChangeInterventionStatusToCompletedIntent"
+    );
+  },
+  async handle(handlerInput) {
+         
+    const id = handlerInput.requestEnvelope.request.intent.slots.id.value;
+
+    // Call the API and return a list of the elevators   
+    const listOfInterventions = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/interventions')
+    const amountOfInterventions = JSON.parse(listOfInterventions).length
+    
+    // Validates if the number requested does not exceed the maximum number of elevators
+    if (id > amountOfInterventions) {
+
+      const outputSpeech = `The ${id} exceed the number of intervention. The maximum number of interventions is ${amountOfInterventions}`;
+      return handlerInput.responseBuilder
+        .speak(outputSpeech)
+        .reprompt()
+        .getResponse();
+    } else{
+      return ChangeInterventionStatusCompleted(id, handlerInput);
+    }
+  }
+};
+
+async function ChangeInterventionStatusCompleted(id, handlerInput) {
+  return await axios.put("https://rocket-elevators-ai.azurewebsites.net/api/interventions/"+id+"/completed",{ id: id, status: 'Completed'})
+      .then(res => {
+        console.log("Response", res);
+        const outputSpeech =` The status of intervention id ${id} is change to completed`
+
+        return handlerInput.responseBuilder
+          .speak(outputSpeech)
+          .reprompt()
+          .getResponse();      
+      })
+      .catch(function(error){
+          console.log("ERROR",error);
+          
+          return handlerInput.responseBuilder
+          .speak(error.status)
+          .reprompt()
+          .getResponse();
+      });
+}
 
 //------------change elevator status
 
@@ -338,6 +385,7 @@ exports.handler = skillBuilder
     GetElevatorStatusHandler,
     GetInfoInterventionHandler,
     ChangeInterventionStatusToProgressHandler,
+    ChangeInterventionStatusToCompletedHandler,
     ChangeElevatorStatusHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,

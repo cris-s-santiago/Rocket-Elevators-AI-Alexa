@@ -3,7 +3,6 @@
 
 const Alexa = require('ask-sdk-core');
 const http = require("https");
-const request = require('request');
 const axios = require('axios');
 
 

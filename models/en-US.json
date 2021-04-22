@@ -87,6 +87,23 @@
                 "can you change int {id} to the status in progress",
                 "change the status in progress for the intervention id {id}"
             ]
+        },
+        {
+            "name": "ChangeElevatorStatusIntent",
+            "slots": [
+                {
+                    "name": "id",
+                    "type": "AMAZON.NUMBER"
+                },
+                {
+                    "name": "status",
+                    "type": "AMAZON.FirstName"
+                }
+            ],
+            "samples": [
+                "change elevator {id} status to {status}",
+                "change the status of elevator  {id} to {status}"
+            ]
         }
       ],
       "types": []

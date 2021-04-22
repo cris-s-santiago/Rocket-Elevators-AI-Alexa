@@ -152,7 +152,7 @@ const GetInfoInterventionHandler = {
     const infoIntervention = JSON.parse(objectIntervention)
 
     // Creating the output speech with the previously declared constants
-    outputSpeech = `The intervention ${id} author id is ${infoIntervention.author_id}, the customer id is ${infoIntervention.customer_id}.
+    outputSpeech = `The intervention ${id} author id is ${infoIntervention.author}, the customer id is ${infoIntervention.customer_id}.
     The building id is ${infoIntervention.building_id}. the battery id is ${infoIntervention.battery_id}, the column id is ${infoIntervention.column_id} and the elevator id is ${infoIntervention.elevator_id}.
     The employee id assigned to the call is ${infoIntervention.employee_id}, the description is ${infoIntervention.report}`;
     return handlerInput.responseBuilder
@@ -213,6 +213,51 @@ async function httpPutInterventionStatusInProgress(id, handlerInput) {
           .getResponse();
       });
 }
+
+
+//------------change elevator status
+
+
+const ChangeElevatorStatusHandler = {
+  canHandle(handlerInput) {
+    return (
+      handlerInput.requestEnvelope.request.type === "IntentRequest" &&
+      handlerInput.requestEnvelope.request.intent.name === "ChangeElevatorStatusIntent"
+    );
+  },
+  async handle(handlerInput) {
+
+    const id = handlerInput.requestEnvelope.request.intent.slots.id.value;
+    const status = handlerInput.requestEnvelope.request.intent.slots.status.value;
+
+
+    return httpPutElevatorStatus(id, status, handlerInput);
+
+  }
+};
+
+async function httpPutElevatorStatus(id, status, handlerInput) {
+  return await axios.put("https://rocket-elevators-ai.azurewebsites.net/api/elevators/"+id+"/Status",{ id: id, status: status})
+      .then(res => {
+        console.log("Response", res);
+        const outputSpeech =`The status of elevators id ${id} is change to ${status}`
+
+        return handlerInput.responseBuilder
+          .speak(outputSpeech)
+          .reprompt()
+          .getResponse();      
+      })
+      .catch(function(error){
+          console.log("ERROR",error);
+          
+          return handlerInput.responseBuilder
+          .speak("Qualquer coisa")
+          .reprompt()
+          .getResponse();
+      });
+}
+
+
 
 const HelpIntentHandler = {
   canHandle(handlerInput) {
@@ -293,6 +338,7 @@ exports.handler = skillBuilder
     GetElevatorStatusHandler,
     GetInfoInterventionHandler,
     ChangeInterventionStatusToProgressHandler,
+    ChangeElevatorStatusHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,

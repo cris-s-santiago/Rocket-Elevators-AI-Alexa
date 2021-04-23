@@ -46,34 +46,89 @@ Invocation:
 
 Ask a little briefing about Rocket Elevators
 
-              What is going on at Rocket Elevators  
-              What's up at Rocket Elevators  
-              How is it going at Rocket Elevators  
-              Tell me about the company  
-              A briefing please  
-              Tell me what is happening at Rocket Elevators  
+              "what is the rocket elevators situation",
+              "How is it going at Rocket Elevators",
+              "What is new at rocket elevators",
+              "What is happening at Rocket Elevators",
+              "A briefing please",
+              "Tell me about the company",
+              "Tell me what is going on at Rocket Elevators",
+              "Tell me what is up at Rocket Elevators",
 Ask a list of Builds require intervention
 
-                How many buildings that require intervention  
-                Buildings with intervention   
-Ask the status of an elevator
+              "how many buildings that require intervention",
+              "buildings with intervention"
+Ask the status of an elevator (id can be between 1-231)
 
-                What is the status of elevator 1  
-                What is the elevator 2 status  
-                Tell me the status of elevator 3  
-                Can you tell me the status of elevator 4  
-                Give me the status about elevator 5
-Ask details of an elevator
+              "What is the status of elevator {id}",
+              "What is the elevator {id} status",
+              "What's the status of elevator {id}",
+              "What's the elevator {id} status",
+              "Tell me the status of elevator {id}",
+              "Tell me the elevator {id} status",
+              "Can you tell me the status of elevator {id}",
+              "Give me the status about elevator {id}"
+Ask details of an elevator (id can be between 1-231)
 
-                What is the details of elevator 1
-                What is the elevator {id} details
-                What's the details of elevator {id}
-                What's the elevator {id} details
-                Tell me the details of elevator {id}",
-                Tell me the elevator {id} details",
-                Can you tell me the details of elevator {id}",
-                Give me details about elevator {id}"
+              "What is the details of elevator {id}",
+              "What is the elevator {id} details",
+              "What's the details of elevator {id}",
+              "What's the elevator {id} details",
+              "Tell me the details of elevator {id}",
+              "Tell me the elevator {id} details",
+              "Can you tell me the details of elevator {id}",
+              "Give me details about elevator {id}"
+Change elevator Status (id can be between 1-231)
 
+              "Change elevator {id} status to {status}",
+              "Change the status of elevator {id} to {status}",
+              "Change status to {status} for elevator {id}"
+Ask details of any particular Customer (id can be between 1-50)
+
+              "What is the details of customer {id}",
+              "Give me details about customer {id}",
+              "What is the information of customer {id}",
+              "What is the customer {id} information",
+              "What's the information of customer {id}",
+              "What's the customer {id} information",
+Ask the status of an Column (id can be between 1-115)
+
+              "What is the status of column {id}",
+              "What is the column {id} status",
+              "What's the status of column {id}",
+              "What's the column {id} status",
+              "Tell me the status of column {id}",
+              "Tell me the column {id} status",
+              "Can you tell me the status of column {id}",
+              "Give me the status about column {id}"
+Change Column Status (id can be between 1-115)
+
+               "Change column {id} status to {status}",
+               "Change the status of column {id} to {status}",
+               "Change status to {status} for column {id}"
+Ask details of any particular Intervention (id can be between 1-5)
+                  
+                "What is the details of intervention {id}",
+                "Give me some information about intervention {id}",
+                "What is the information of intervention {id}",
+                "What is the intervention {id} information",
+                "What's the information of intervention {id}"
+Ask the status of a particular Intervention (id can be between 1-5)
+                  
+                "What is the status of intervention {id}",
+                "What is the intervention {id} status",
+                "What's the status of intervention {id}",
+                "What's the intervention {id} status",
+                "Tell me the status of intervention {id}",
+Change Intervention Status to Inprogress (id can be between 1-5)
+
+                "Can you change intervention {id} to the status in progress",
+                "Change the status in progress for the intervention id {id}"
+
+Change Intervention Status to Completed (id can be between 1-5)
+
+               "Can you change intervention {id} to the status completed",
+               "Change the status completed for the intervention id {id}"
 
 ![](images/week11photo10.jpg)
 

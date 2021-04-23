@@ -133,7 +133,7 @@ Ask the status of an Column (id can be between 1-115)
 
 here is a response From Alexa
 
-![](images/6.JPG) 
+![](images/13.JPG) 
 
 Change Column Status (id can be between 1-115)
 

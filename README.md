@@ -129,6 +129,12 @@ Change Intervention Status to Completed (id can be between 1-5)
 
                "Can you change intervention {id} to the status completed",
                "Change the status completed for the intervention id {id}"
+               
+# Reference:
+
+📚 https://dabblelab.com/templates/2-alexa-remote-api-example-skill
+
+📚 https://developer.amazon.com/en-US/alexa/alexa-skills-kit
 
 ![](images/week11photo10.jpg)
 

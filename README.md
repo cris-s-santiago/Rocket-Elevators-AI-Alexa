@@ -73,28 +73,6 @@ Ask details of an elevator
                 Tell me the elevator {id} details",
                 Can you tell me the details of elevator {id}",
                 Give me details about elevator {id}"
-Ask Rocket Elevators using quotes
-or any of those queries
-
-                quotes  
-                Do we have any quotes in process  
-                How many quotes are awaiting process  
-                How many quotes are pending  
-Ask Rocket Elevators using lead
-or any of those queries
-
-                lead  
-                How many leads do I have  
-                Do we have any unanswered leads  
-                How many leads are in my contact request  
-                Any leads  
-Ask Rocket Elevators using elevator ID
-or any of those queries
-
-                  status of {number}  
-                  What is the status of elevator {number}  
-                  How is elevator {number} doing  
-                  Is elevator {number} operational  
 
 
 ![](images/week11photo10.jpg)

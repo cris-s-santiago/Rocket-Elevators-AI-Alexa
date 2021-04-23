@@ -78,8 +78,11 @@ Ask the status of an elevator (id can be between 1-231)
               "Tell me the elevator {id} status",
               "Can you tell me the status of elevator {id}",
               "Give me the status about elevator {id}"
+
 here is a response From Alexa
+
 ![](images/3.JPG)
+
 Change elevator Status (id can be between 1-231)
 
               "Change elevator {id} status to {status}",
@@ -99,6 +102,7 @@ Ask details of an elevator (id can be between 1-231)
               "Tell me the elevator {id} details",
               "Can you tell me the details of elevator {id}",
               "Give me details about elevator {id}"
+
 here is a response From Alexa
 
 ![](images/5.JPG)             
@@ -111,6 +115,7 @@ Ask details of any particular Customer (id can be between 1-50)
               "What is the customer {id} information",
               "What's the information of customer {id}",
               "What's the customer {id} information",
+
 here is a response From Alexa
 
 ![](images/7.JPG) 
@@ -125,6 +130,11 @@ Ask the status of an Column (id can be between 1-115)
               "Tell me the column {id} status",
               "Can you tell me the status of column {id}",
               "Give me the status about column {id}"
+
+here is a response From Alexa
+
+![](images/6.jpg) 
+
 Change Column Status (id can be between 1-115)
 
                "Change column {id} status to {status}",
@@ -132,6 +142,7 @@ Change Column Status (id can be between 1-115)
                "Change status to {status} for column {id}"
 
 here is a response From Alexa
+
 ![](images/6.jpg) 
 
 Ask details of any particular Intervention (id can be between 1-5)
@@ -152,18 +163,28 @@ Ask the status of a particular Intervention (id can be between 1-5)
                 "What's the status of intervention {id}",
                 "What's the intervention {id} status",
                 "Tell me the status of intervention {id}",
+
+here is a response From Alexa
+
+![](images/10.jpg) 
+
 Change Intervention Status to Inprogress (id can be between 1-5)
 
                 "Can you change intervention {id} to the status in progress",
                 "Change the status in progress for the intervention id {id}"
 
+here is a response From Alexa
+
+![](images/11.jpg) 
+
 Change Intervention Status to Completed (id can be between 1-5)
 
                "Can you change intervention {id} to the status completed",
                "Change the status completed for the intervention id {id}"
+
 here is a response From Alexa
 
-![](images/9.jpg) 
+![](images/12.jpg) 
                
 # Reference:
 

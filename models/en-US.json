@@ -39,6 +39,15 @@
                         "Tell me what is happening at Rocket Elevators"
                     ]
                 },
+                 {
+                    "name": "GetinterventionBuildingListIntent",
+                    "slots": [],
+                    "samples": [
+                        "how many buildings that require intervention",
+                        "buildings with intervention"
+                    ]
+                },
+                
                 {
                     "name": "GetElevatorStatusIntent",
                     "slots": [

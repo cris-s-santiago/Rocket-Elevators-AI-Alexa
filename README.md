@@ -54,14 +54,20 @@ Ask a little briefing about Rocket Elevators
               "Tell me about the company",
               "Tell me what is going on at Rocket Elevators",
               "Tell me what is up at Rocket Elevators",
+
 here is a response From Alexa
+
 ![](images\1.JPG)
+
 Ask a list of Builds require intervention
 
               "how many buildings that require intervention",
               "buildings with intervention"
+              
 here is a response From Alexa
+
 ![](images/2.JPG)
+
 Ask the status of an elevator (id can be between 1-231)
 
               "What is the status of elevator {id}",
@@ -80,7 +86,9 @@ Change elevator Status (id can be between 1-231)
               "Change the status of elevator {id} to {status}",
               "Change status to {status} for elevator {id}"
 here is a response From Alexa
-![](images/4.JPG)             
+
+![](images/4.JPG) 
+
 Ask details of an elevator (id can be between 1-231)
 
               "What is the details of elevator {id}",
@@ -92,6 +100,7 @@ Ask details of an elevator (id can be between 1-231)
               "Can you tell me the details of elevator {id}",
               "Give me details about elevator {id}"
 here is a response From Alexa
+
 ![](images/5.JPG)             
 
 Ask details of any particular Customer (id can be between 1-50)
@@ -103,7 +112,9 @@ Ask details of any particular Customer (id can be between 1-50)
               "What's the information of customer {id}",
               "What's the customer {id} information",
 here is a response From Alexa
+
 ![](images/7.JPG) 
+
 Ask the status of an Column (id can be between 1-115)
 
               "What is the status of column {id}",
@@ -119,8 +130,10 @@ Change Column Status (id can be between 1-115)
                "Change column {id} status to {status}",
                "Change the status of column {id} to {status}",
                "Change status to {status} for column {id}"
+
 here is a response From Alexa
 ![](images/6.jpg) 
+
 Ask details of any particular Intervention (id can be between 1-5)
                   
                 "What is the details of intervention {id}",
@@ -129,7 +142,9 @@ Ask details of any particular Intervention (id can be between 1-5)
                 "What is the intervention {id} information",
                 "What's the information of intervention {id}"
 here is a response From Alexa
-![](images/8.jpg) 
+
+![](images/8.JPG) 
+
 Ask the status of a particular Intervention (id can be between 1-5)
                   
                 "What is the status of intervention {id}",
@@ -147,6 +162,7 @@ Change Intervention Status to Completed (id can be between 1-5)
                "Can you change intervention {id} to the status completed",
                "Change the status completed for the intervention id {id}"
 here is a response From Alexa
+
 ![](images/9.jpg) 
                
 # Reference:

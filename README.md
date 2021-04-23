@@ -55,13 +55,13 @@ Ask a little briefing about Rocket Elevators
               "Tell me what is going on at Rocket Elevators",
               "Tell me what is up at Rocket Elevators",
 here is a response From Alexa
-![](images/1.jpg)
+![](images\1.JPG)
 Ask a list of Builds require intervention
 
               "how many buildings that require intervention",
               "buildings with intervention"
 here is a response From Alexa
-![](images/2.jpg)
+![](images/2.JPG)
 Ask the status of an elevator (id can be between 1-231)
 
               "What is the status of elevator {id}",
@@ -73,14 +73,14 @@ Ask the status of an elevator (id can be between 1-231)
               "Can you tell me the status of elevator {id}",
               "Give me the status about elevator {id}"
 here is a response From Alexa
-![](images/3.jpg)
+![](images/3.JPG)
 Change elevator Status (id can be between 1-231)
 
               "Change elevator {id} status to {status}",
               "Change the status of elevator {id} to {status}",
               "Change status to {status} for elevator {id}"
 here is a response From Alexa
-![](images/4.jpg)             
+![](images/4.JPG)             
 Ask details of an elevator (id can be between 1-231)
 
               "What is the details of elevator {id}",
@@ -92,7 +92,7 @@ Ask details of an elevator (id can be between 1-231)
               "Can you tell me the details of elevator {id}",
               "Give me details about elevator {id}"
 here is a response From Alexa
-![](images/5.jpg)             
+![](images/5.JPG)             
 
 Ask details of any particular Customer (id can be between 1-50)
 
@@ -103,7 +103,7 @@ Ask details of any particular Customer (id can be between 1-50)
               "What's the information of customer {id}",
               "What's the customer {id} information",
 here is a response From Alexa
-![](images/7.jpg) 
+![](images/7.JPG) 
 Ask the status of an Column (id can be between 1-115)
 
               "What is the status of column {id}",

@@ -133,7 +133,7 @@ Ask the status of an Column (id can be between 1-115)
 
 here is a response From Alexa
 
-![](images/6.jpg) 
+![](images/6.JPG) 
 
 Change Column Status (id can be between 1-115)
 
@@ -143,7 +143,7 @@ Change Column Status (id can be between 1-115)
 
 here is a response From Alexa
 
-![](images/6.jpg) 
+![](images/6.JPG) 
 
 Ask details of any particular Intervention (id can be between 1-5)
                   
@@ -166,7 +166,7 @@ Ask the status of a particular Intervention (id can be between 1-5)
 
 here is a response From Alexa
 
-![](images/10.jpg) 
+![](images/10.JPG) 
 
 Change Intervention Status to Inprogress (id can be between 1-5)
 
@@ -175,7 +175,7 @@ Change Intervention Status to Inprogress (id can be between 1-5)
 
 here is a response From Alexa
 
-![](images/11.jpg) 
+![](images/11.JPG) 
 
 Change Intervention Status to Completed (id can be between 1-5)
 
@@ -184,7 +184,7 @@ Change Intervention Status to Completed (id can be between 1-5)
 
 here is a response From Alexa
 
-![](images/12.jpg) 
+![](images/12.JPG) 
                
 # Reference:
 

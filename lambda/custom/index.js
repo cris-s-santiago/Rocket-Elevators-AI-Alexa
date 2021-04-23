@@ -174,7 +174,33 @@ async function httpPutElevatorStatus(id, status, handlerInput) {
           .getResponse();
       });
 }
+//list of building that require interventions
 
+const GetinterventionBuildingListDataHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'LaunchRequest'
+      || (handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'GetinterventionBuildingListIntent');
+  },
+  async handle(handlerInput) {
+    let outputSpeech = 'This is the default message.';
+
+    await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/Buildings/InterventionList')
+      .then((response) => {
+        const data = JSON.parse(response).length;
+        outputSpeech = `There are currently ${data} buildings that requires intervention`;
+      })
+      .catch((err) => {
+        console.log(`ERROR: ${err.message}`);
+        // set an optional error message here
+        // outputSpeech = err.message;
+      });
+
+    return handlerInput.responseBuilder
+      .speak(outputSpeech)
+      .getResponse();
+  },
+};
 
 // The method returns the details of a specific customer
 const GetCustomersdetails = {
@@ -557,6 +583,7 @@ exports.handler = skillBuilder
     GetElevatorStatusHandler,
     GetElevatordetails,
     ChangeElevatorStatusHandler,
+    GetinterventionBuildingListDataHandler,
     GetCustomersdetails,
     GetColumnStatusHandler,
     ChangeColumnStatusHandler,

@@ -22,7 +22,7 @@
 
 [URL for Rest API:  https://rocket-elevators-ai.azurewebsites.net](https://rocket-elevators-ai.azurewebsites.net)
 
-[Click here to see the presentation video](	https://www.youtube.com/watch?v=npTVRcXBt2s)
+[Click here to see the presentation video](https://www.dropbox.com/sh/ylura897kseqzde/AADKbwicikAQ3dpWLhPhSPYaa?dl=0)
 
 
 -----------------------------------------------------------------------------------------------

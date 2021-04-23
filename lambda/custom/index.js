@@ -174,30 +174,26 @@ async function httpPutElevatorStatus(id, status, handlerInput) {
           .getResponse();
       });
 }
-//list of building that require interventions
+// The method returns the list of building that require interventions
 
-const GetinterventionBuildingListDataHandler = {
+const GetInterventionBuildingListDataHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'LaunchRequest'
-      || (handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'GetinterventionBuildingListIntent');
+    return handlerInput.requestEnvelope.request.intent.name === 'GetInterventionBuildingListIntent';
   },
   async handle(handlerInput) {
     let outputSpeech = 'This is the default message.';
 
-    await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/Buildings/InterventionList')
-      .then((response) => {
-        const data = JSON.parse(response).length;
-        outputSpeech = `There are currently ${data} buildings that requires intervention`;
-      })
-      .catch((err) => {
-        console.log(`ERROR: ${err.message}`);
-        // set an optional error message here
-        // outputSpeech = err.message;
-      });
 
+    const listOfBuildingsIntervention = await getRemoteData('https://rocket-elevators-ai.azurewebsites.net/api/Buildings/InterventionList')
+        
+    // Parsing the GET requests as JSON
+    const amountOfBuildingsIntervention = JSON.parse(listOfBuildingsIntervention).length;
+    
+    // Creating the voice output with the status of the elevator        
+    outputSpeech = `There are currently ${amountOfBuildingsIntervention} buildings that requires intervention`;
     return handlerInput.responseBuilder
       .speak(outputSpeech)
+      .reprompt()
       .getResponse();
   },
 };
@@ -583,7 +579,7 @@ exports.handler = skillBuilder
     GetElevatorStatusHandler,
     GetElevatordetails,
     ChangeElevatorStatusHandler,
-    GetinterventionBuildingListDataHandler,
+    GetInterventionBuildingListDataHandler,
     GetCustomersdetails,
     GetColumnStatusHandler,
     ChangeColumnStatusHandler,

@@ -43,8 +43,8 @@
                     "name": "GetinterventionBuildingListIntent",
                     "slots": [],
                     "samples": [
-                        "how many buildings that require intervention",
-                        "buildings with intervention"
+                        "How many buildings that require intervention",
+                        "Buildings with intervention"
                     ]
                 },
                 

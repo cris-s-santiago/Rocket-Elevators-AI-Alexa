@@ -57,7 +57,7 @@ Ask a little briefing about Rocket Elevators
 
 here is a response From Alexa
 
-![](images\1.JPG)
+![](images/1.JPG)
 
 Ask a list of Builds require intervention
 
